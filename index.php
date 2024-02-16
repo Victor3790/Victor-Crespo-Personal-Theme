@@ -3,7 +3,6 @@
  * The main template file
  *
  * @package WordPress
- * @subpackage Victor Crespo's personal theme
  */
 
 get_header();
