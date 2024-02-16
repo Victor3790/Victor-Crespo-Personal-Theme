@@ -2,7 +2,7 @@
 /**
  * The main template file
  *
- * @package WordPress
+ * @package victor-crespo-personal-theme
  */
 
 get_header();

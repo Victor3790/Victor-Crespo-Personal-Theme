@@ -2,8 +2,7 @@
 /**
  * The header of our theme
  *
- * @package WordPress
- * @subpackage Victor Crespo's personal theme
+ * @package victor-crespo-personal-theme
  */
 
 ?>
