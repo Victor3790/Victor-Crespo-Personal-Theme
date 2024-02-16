@@ -1,0 +1,10 @@
+{
+    "apiVersion": 2,
+    "name": "vcpt/resume-header-block",
+    "title": "Resume Header",
+    "category": "widgets",
+    "icon": "admin-users",
+    "description": "Custom header for resumes",
+    "version": "0.0.1",
+    "editorScript": "file:./build/index.js"
+}
