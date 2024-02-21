@@ -56,6 +56,34 @@ function vcpt_register_blocks() {
 	);
 }
 
+add_action( 'enqueue_block_editor_assets', 'vcpt_add_bootstrap_support_to_gutenberg' );
+
+/**
+ * Add Bootstrap support for Gutenberg
+ */
+function vcpt_add_bootstrap_support_to_gutenberg() {
+	wp_enqueue_style(
+		'vcpt-bootstrap-reboot',
+		VCPT_URI . '/assets/css/bootstrap-reboot.min.css',
+		array(),
+		VCPT_VER
+	);
+
+	wp_enqueue_style(
+		'vcpt-bootstrap-grid',
+		VCPT_URI . '/assets/css/bootstrap-grid.min.css',
+		array( 'vcpt-bootstrap-reboot' ),
+		VCPT_VER
+	);
+
+	wp_enqueue_style(
+		'vcpt-bootstrap-utilities',
+		VCPT_URI . '/assets/css/bootstrap-utilities.css',
+		array( 'vcpt-bootstrap-grid' ),
+		VCPT_VER
+	);
+}
+
 add_action( 'wp_enqueue_scripts', 'vcpt_load_assets' );
 
 /**
