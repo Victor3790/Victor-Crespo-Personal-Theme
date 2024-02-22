@@ -6,5 +6,15 @@
     "icon": "admin-users",
     "description": "Custom header for resumes",
     "version": "0.0.1",
+    "attributes": {
+        "name": {
+            "type": "string",
+            "default": "JOHN DOE"
+        },
+        "jobTitle": {
+            "type": "string",
+            "default": "WEB DEVELOPER"
+        }
+    },
     "editorScript": "file:./build/index.js"
 }
