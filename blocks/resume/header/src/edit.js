@@ -1,5 +1,6 @@
 import { useBlockProps } from '@wordpress/block-editor';
-import {RichText} from '@wordpress/block-editor';
+import {InspectorControls, RichText, MediaUpload, MediaUploadCheck} from '@wordpress/block-editor';
+import {Panel, PanelBody, Button} from '@wordpress/components';
 
 const Edit = (props) => {
     const blockProps = useBlockProps();
@@ -8,6 +9,27 @@ const Edit = (props) => {
 
     return (
         <>
+            <InspectorControls>
+                <Panel>
+                    <PanelBody title='Select background image' initialOpen={true}>
+                        <div className="editor-post-featured-image">
+                            <MediaUploadCheck>
+                                <MediaUpload
+                                    allowedTypes={ ['image'] }
+                                    render={({open}) => (
+                                        <Button 
+                                            className={attributes.backgroundMediaId == 0 ? 'editor-post-featured-image__toggle' : 'editor-post-featured-image__preview'}
+                                            onClick={open}
+                                        >
+                                            {attributes.backgroundMediaId == 0 && 'Choose an image'}
+                                        </Button>
+                                    )}
+                                />
+                            </MediaUploadCheck>
+                        </div>
+                    </PanelBody>
+                </Panel>
+            </InspectorControls>
             <div {...blockProps}>
                 <div className="hero-background position-absolute w-100"></div>
                 <div className="hero">
