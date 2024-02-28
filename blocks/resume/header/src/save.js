@@ -4,10 +4,14 @@ const Save = (props) => {
     const {attributes} = props;
     const {name, jobTitle} = attributes;
 
+    const blockStyle = {
+        backgroundImage: attributes.backgroundMediaUrl != '' ? 'url("' + attributes.backgroundMediaUrl + '")' : 'none'
+    }
+
     return (
         <>
             <div>
-                <div className="hero-background position-absolute w-100"></div>
+                <div className="hero-background position-absolute w-100" style={blockStyle}></div>
                 <div className="hero">
                     <div className="container h-100">
                         <div className="row h-100">

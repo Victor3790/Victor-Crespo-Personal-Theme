@@ -18,6 +18,10 @@
         "backgroundMediaId": {
             "type": "number",
             "default": 0
+        },
+        "backgroundMediaUrl": {
+            "type": "string",
+            "default": ""
         }
     },
     "editorScript": "file:./build/index.js"

@@ -1,11 +1,28 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import {InspectorControls, RichText, MediaUpload, MediaUploadCheck} from '@wordpress/block-editor';
-import {Panel, PanelBody, Button} from '@wordpress/components';
+import {Panel, PanelBody, Button, ResponsiveWrapper} from '@wordpress/components';
 
 const Edit = (props) => {
     const blockProps = useBlockProps();
     const {attributes, setAttributes} = props;
     const {name, jobTitle} = attributes;
+    const onSelectMedia = (media) => {
+		props.setAttributes({
+			backgroundMediaId: media.id,
+            backgroundMediaUrl: media.url
+		});
+	}
+
+    const removeMedia = () => {
+        props.setAttributes({
+            backgroundMediaId: 0,
+            backgroundMediaUrl: ''
+        });
+    }
+
+    const blockStyle = {
+        backgroundImage: attributes.backgroundMediaUrl != '' ? 'url("' + attributes.backgroundMediaUrl + '")' : 'none'
+    }
 
     return (
         <>
@@ -15,6 +32,8 @@ const Edit = (props) => {
                         <div className="editor-post-featured-image">
                             <MediaUploadCheck>
                                 <MediaUpload
+                                    onSelect={onSelectMedia}
+                                    value={attributes.backgroundMediaId}
                                     allowedTypes={ ['image'] }
                                     render={({open}) => (
                                         <Button 
@@ -22,16 +41,29 @@ const Edit = (props) => {
                                             onClick={open}
                                         >
                                             {attributes.backgroundMediaId == 0 && 'Choose an image'}
+                                            {props.media != undefined && 
+                                                <ResponsiveWrapper
+                                                    naturalWidth={ props.media.media_details.width }
+                                                    naturalHeight={ props.media.media_details.height }
+                                                >
+                                                    <img src={props.media.source_url} />
+                                                </ResponsiveWrapper>
+                                            }
                                         </Button>
                                     )}
                                 />
                             </MediaUploadCheck>
+                            {attributes.backgroundMediaId != 0 && 
+                                <MediaUploadCheck>
+                                    <Button onClick={removeMedia} variant="link" isDestructive>{'Remove image'}</Button>
+                                </MediaUploadCheck>
+                            }
                         </div>
                     </PanelBody>
                 </Panel>
             </InspectorControls>
             <div {...blockProps}>
-                <div className="hero-background position-absolute w-100"></div>
+                <div className="hero-background position-absolute w-100" style={blockStyle}></div>
                 <div className="hero">
                     <div className="container h-100">
                         <div className="row h-100">
